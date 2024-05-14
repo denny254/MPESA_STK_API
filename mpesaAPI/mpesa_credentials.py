@@ -6,15 +6,23 @@ import base64
 
 
 class MpesaC2bCredential:
-    consumer_key = 'hEH2RBKf73gShgbCVl4Bcmiu3qNfKPHN'
-    consumer_secret = 'grMt9VALAcIDFf4Z'
+    consumer_key = 'AtTnHKQVmH7UBzAYA1EAbZczQ4yCPhNL'
+    consumer_secret = 'gruvQDFCdDUxgENA'
     api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
 class MpesaAccessToken:
     r = requests.get(MpesaC2bCredential.api_URL,
                      auth=HTTPBasicAuth(MpesaC2bCredential.consumer_key, MpesaC2bCredential.consumer_secret))
-    mpesa_access_token = json.loads(r.text)
-    validated_mpesa_access_token = mpesa_access_token['access_token']
+    print("Response status code:", r.status_code)
+    print("Response text:", r.text)
+
+    try:
+        mpesa_access_token = json.loads(r.text)
+        validated_mpesa_access_token = mpesa_access_token['access_token']
+    except json.JSONDecodeError as e:
+        print("JSON decoding error:", e)
+        validated_mpesa_access_token = None
+
 
 class LipanaMpesaPpassword:
     lipa_time = datetime.now().strftime('%Y%m%d%H%M%S')

@@ -5,8 +5,6 @@ class BaseModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     class Meta:
         abstract = True
-        
-        
 class MpesaCalls(BaseModel):
     ip_address = models.TextField()
     caller = models.TextField()
@@ -15,8 +13,6 @@ class MpesaCalls(BaseModel):
     class Meta:
         verbose_name = 'Mpesa Call'
         verbose_name_plural = 'Mpesa Calls'
-        
-        
 class MpesaCallBacks(BaseModel):
     ip_address = models.TextField()
     caller = models.TextField()
@@ -25,8 +21,6 @@ class MpesaCallBacks(BaseModel):
     class Meta:
         verbose_name = 'Mpesa Call Back'
         verbose_name_plural = 'Mpesa Call Backs'
-        
-        
 class MpesaPayment(BaseModel):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()

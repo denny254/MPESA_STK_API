@@ -11,8 +11,8 @@ from .models import MpesaPayment
 
 
 def getAccessToken(request):
-    consumer_key = 'hEH2RBKf73gShgbCVl4Bcmiu3qNfKPHN'
-    consumer_secret = 'grMt9VALAcIDFf4Z'
+    consumer_key = 'AtTnHKQVmH7UBzAYA1EAbZczQ4yCPhNL'
+    consumer_secret = 'gruvQDFCdDUxgENA'
     api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
     r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
     mpesa_access_token = json.loads(r.text)
@@ -28,11 +28,11 @@ def lipa_na_mpesa_online(request):
         "Timestamp": LipanaMpesaPpassword.lipa_time,
         "TransactionType": "CustomerPayBillOnline",
         "Amount": 1,
-        "PartyA": 254708134496,
+        "PartyA": 254708374149,
         "PartyB": LipanaMpesaPpassword.Business_short_code,
-        "PhoneNumber": 254708134496,
+        "PhoneNumber": 254708374149,
         "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
-        "AccountReference": "Chalo",
+        "AccountReference": "Sandbox",
         "TransactionDesc": "Testing stk push"
     }
     response = requests.post(api_url, json=request, headers=headers)
